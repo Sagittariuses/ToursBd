@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ToursModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="InfoAboutTourists">
+          <Key>
+            <PropertyRef Name="ID_tourist" />
+          </Key>
+          <Property Name="ID_tourist" Type="int" Nullable="false" />
+          <Property Name="PassportSeries" Type="int" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="11" />
+          <Property Name="Index" Type="int" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="int" Nullable="false" />
+          <Property Name="VoucherID" Type="int" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Sum" Type="int" />
+        </EntityType>
+        <EntityType Name="Seasons">
+          <Key>
+            <PropertyRef Name="SeasonID" />
+          </Key>
+          <Property Name="SeasonID" Type="int" Nullable="false" />
+          <Property Name="TourID" Type="int" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="FinishDate" Type="date" />
+          <Property Name="SeasonClosed" Type="bit" />
+          <Property Name="NumberOfSeats" Type="int" />
+        </EntityType>
+        <EntityType Name="Tour">
+          <Key>
+            <PropertyRef Name="TourID" />
+          </Key>
+          <Property Name="TourID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Price" Type="nvarchar" MaxLength="50" />
+          <Property Name="Information" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Tourists">
+          <Key>
+            <PropertyRef Name="TouristID" />
+          </Key>
+          <Property Name="TouristID" Type="int" Nullable="false" />
+          <Property Name="Surname" Type="nchar" MaxLength="50" />
+          <Property Name="Name" Type="nchar" MaxLength="50" />
+          <Property Name="Patronymic" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Vouchers">
+          <Key>
+            <PropertyRef Name="VoucherID" />
+          </Key>
+          <Property Name="VoucherID" Type="int" Nullable="false" />
+          <Property Name="TouristID" Type="int" />
+          <Property Name="SeasonID" Type="int" />
+        </EntityType>
+        <Association Name="FK_Information about tourists_Tourists">
+          <End Role="Tourists" Type="Self.Tourists" Multiplicity="1" />
+          <End Role="InfoAboutTourists" Type="Self.InfoAboutTourists" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Tourists">
+              <PropertyRef Name="TouristID" />
+            </Principal>
+            <Dependent Role="InfoAboutTourists">
+              <PropertyRef Name="ID_tourist" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_Vouchers">
+          <End Role="Vouchers" Type="Self.Vouchers" Multiplicity="0..1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vouchers">
+              <PropertyRef Name="VoucherID" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="VoucherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seasons_Tour">
+          <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
+          <End Role="Seasons" Type="Self.Seasons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tour">
+              <PropertyRef Name="TourID" />
+            </Principal>
+            <Dependent Role="Seasons">
+              <PropertyRef Name="TourID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vouchers_Information about tourists">
+          <End Role="InfoAboutTourists" Type="Self.InfoAboutTourists" Multiplicity="0..1" />
+          <End Role="Vouchers" Type="Self.Vouchers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoAboutTourists">
+              <PropertyRef Name="ID_tourist" />
+            </Principal>
+            <Dependent Role="Vouchers">
+              <PropertyRef Name="TouristID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vouchers_Seasons">
+          <End Role="Seasons" Type="Self.Seasons" Multiplicity="0..1" />
+          <End Role="Vouchers" Type="Self.Vouchers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seasons">
+              <PropertyRef Name="SeasonID" />
+            </Principal>
+            <Dependent Role="Vouchers">
+              <PropertyRef Name="SeasonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ToursModelContainer">
+          <EntitySet Name="InfoAboutTourists" EntityType="Self.InfoAboutTourists" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Seasons" EntityType="Self.Seasons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tour" EntityType="Self.Tour" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tourists" EntityType="Self.Tourists" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vouchers" EntityType="Self.Vouchers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Information about tourists_Tourists" Association="Self.FK_Information about tourists_Tourists">
+            <End Role="Tourists" EntitySet="Tourists" />
+            <End Role="InfoAboutTourists" EntitySet="InfoAboutTourists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_Vouchers" Association="Self.FK_Payment_Vouchers">
+            <End Role="Vouchers" EntitySet="Vouchers" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seasons_Tour" Association="Self.FK_Seasons_Tour">
+            <End Role="Tour" EntitySet="Tour" />
+            <End Role="Seasons" EntitySet="Seasons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vouchers_Information about tourists" Association="Self.FK_Vouchers_Information about tourists">
+            <End Role="InfoAboutTourists" EntitySet="InfoAboutTourists" />
+            <End Role="Vouchers" EntitySet="Vouchers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vouchers_Seasons" Association="Self.FK_Vouchers_Seasons">
+            <End Role="Seasons" EntitySet="Seasons" />
+            <End Role="Vouchers" EntitySet="Vouchers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ToursModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="InfoAboutTourists">
+          <Key>
+            <PropertyRef Name="ID_tourist" />
+          </Key>
+          <Property Name="ID_tourist" Type="Int32" Nullable="false" />
+          <Property Name="PassportSeries" Type="Int32" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="Index" Type="Int32" />
+          <NavigationProperty Name="Tourists" Relationship="Self.FK_Information_about_tourists_Tourists" FromRole="InfoAboutTourists" ToRole="Tourists" />
+          <NavigationProperty Name="Vouchers" Relationship="Self.FK_Vouchers_Information_about_tourists" FromRole="InfoAboutTourists" ToRole="Vouchers" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="Int32" Nullable="false" />
+          <Property Name="VoucherID" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Sum" Type="Int32" />
+          <NavigationProperty Name="Vouchers" Relationship="Self.FK_Payment_Vouchers" FromRole="Payment" ToRole="Vouchers" />
+        </EntityType>
+        <EntityType Name="Seasons">
+          <Key>
+            <PropertyRef Name="SeasonID" />
+          </Key>
+          <Property Name="SeasonID" Type="Int32" Nullable="false" />
+          <Property Name="TourID" Type="Int32" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="FinishDate" Type="DateTime" Precision="0" />
+          <Property Name="SeasonClosed" Type="Boolean" />
+          <Property Name="NumberOfSeats" Type="Int32" />
+          <NavigationProperty Name="Tour" Relationship="Self.FK_Seasons_Tour" FromRole="Seasons" ToRole="Tour" />
+          <NavigationProperty Name="Vouchers" Relationship="Self.FK_Vouchers_Seasons" FromRole="Seasons" ToRole="Vouchers" />
+        </EntityType>
+        <EntityType Name="Tour">
+          <Key>
+            <PropertyRef Name="TourID" />
+          </Key>
+          <Property Name="TourID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Information" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Seasons" Relationship="Self.FK_Seasons_Tour" FromRole="Tour" ToRole="Seasons" />
+        </EntityType>
+        <EntityType Name="Tourists">
+          <Key>
+            <PropertyRef Name="TouristID" />
+          </Key>
+          <Property Name="TouristID" Type="Int32" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="InfoAboutTourists" Relationship="Self.FK_Information_about_tourists_Tourists" FromRole="Tourists" ToRole="InfoAboutTourists" />
+        </EntityType>
+        <EntityType Name="Vouchers">
+          <Key>
+            <PropertyRef Name="VoucherID" />
+          </Key>
+          <Property Name="VoucherID" Type="Int32" Nullable="false" />
+          <Property Name="TouristID" Type="Int32" />
+          <Property Name="SeasonID" Type="Int32" />
+          <NavigationProperty Name="InfoAboutTourists" Relationship="Self.FK_Vouchers_Information_about_tourists" FromRole="Vouchers" ToRole="InfoAboutTourists" />
+          <NavigationProperty Name="Payment" Relationship="Self.FK_Payment_Vouchers" FromRole="Vouchers" ToRole="Payment" />
+          <NavigationProperty Name="Seasons" Relationship="Self.FK_Vouchers_Seasons" FromRole="Vouchers" ToRole="Seasons" />
+        </EntityType>
+        <Association Name="FK_Information_about_tourists_Tourists">
+          <End Role="Tourists" Type="Self.Tourists" Multiplicity="1" />
+          <End Role="InfoAboutTourists" Type="Self.InfoAboutTourists" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Tourists">
+              <PropertyRef Name="TouristID" />
+            </Principal>
+            <Dependent Role="InfoAboutTourists">
+              <PropertyRef Name="ID_tourist" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vouchers_Information_about_tourists">
+          <End Role="InfoAboutTourists" Type="Self.InfoAboutTourists" Multiplicity="0..1" />
+          <End Role="Vouchers" Type="Self.Vouchers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoAboutTourists">
+              <PropertyRef Name="ID_tourist" />
+            </Principal>
+            <Dependent Role="Vouchers">
+              <PropertyRef Name="TouristID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_Vouchers">
+          <End Role="Vouchers" Type="Self.Vouchers" Multiplicity="0..1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vouchers">
+              <PropertyRef Name="VoucherID" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="VoucherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seasons_Tour">
+          <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
+          <End Role="Seasons" Type="Self.Seasons" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tour">
+              <PropertyRef Name="TourID" />
+            </Principal>
+            <Dependent Role="Seasons">
+              <PropertyRef Name="TourID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vouchers_Seasons">
+          <End Role="Seasons" Type="Self.Seasons" Multiplicity="0..1" />
+          <End Role="Vouchers" Type="Self.Vouchers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seasons">
+              <PropertyRef Name="SeasonID" />
+            </Principal>
+            <Dependent Role="Vouchers">
+              <PropertyRef Name="SeasonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ToursEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="InfoAboutTourists" EntityType="Self.InfoAboutTourists" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" />
+          <EntitySet Name="Seasons" EntityType="Self.Seasons" />
+          <EntitySet Name="Tour" EntityType="Self.Tour" />
+          <EntitySet Name="Tourists" EntityType="Self.Tourists" />
+          <EntitySet Name="Vouchers" EntityType="Self.Vouchers" />
+          <AssociationSet Name="FK_Information_about_tourists_Tourists" Association="Self.FK_Information_about_tourists_Tourists">
+            <End Role="Tourists" EntitySet="Tourists" />
+            <End Role="InfoAboutTourists" EntitySet="InfoAboutTourists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vouchers_Information_about_tourists" Association="Self.FK_Vouchers_Information_about_tourists">
+            <End Role="InfoAboutTourists" EntitySet="InfoAboutTourists" />
+            <End Role="Vouchers" EntitySet="Vouchers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_Vouchers" Association="Self.FK_Payment_Vouchers">
+            <End Role="Vouchers" EntitySet="Vouchers" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seasons_Tour" Association="Self.FK_Seasons_Tour">
+            <End Role="Tour" EntitySet="Tour" />
+            <End Role="Seasons" EntitySet="Seasons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vouchers_Seasons" Association="Self.FK_Vouchers_Seasons">
+            <End Role="Seasons" EntitySet="Seasons" />
+            <End Role="Vouchers" EntitySet="Vouchers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ToursModelContainer" CdmEntityContainer="ToursEntities">
+          <EntitySetMapping Name="InfoAboutTourists">
+            <EntityTypeMapping TypeName="ToursModel.InfoAboutTourists">
+              <MappingFragment StoreEntitySet="InfoAboutTourists">
+                <ScalarProperty Name="ID_tourist" ColumnName="ID_tourist" />
+                <ScalarProperty Name="PassportSeries" ColumnName="PassportSeries" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Index" ColumnName="Index" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payment">
+            <EntityTypeMapping TypeName="ToursModel.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="VoucherID" ColumnName="VoucherID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Sum" ColumnName="Sum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Seasons">
+            <EntityTypeMapping TypeName="ToursModel.Seasons">
+              <MappingFragment StoreEntitySet="Seasons">
+                <ScalarProperty Name="SeasonID" ColumnName="SeasonID" />
+                <ScalarProperty Name="TourID" ColumnName="TourID" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
+                <ScalarProperty Name="SeasonClosed" ColumnName="SeasonClosed" />
+                <ScalarProperty Name="NumberOfSeats" ColumnName="NumberOfSeats" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tour">
+            <EntityTypeMapping TypeName="ToursModel.Tour">
+              <MappingFragment StoreEntitySet="Tour">
+                <ScalarProperty Name="TourID" ColumnName="TourID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Information" ColumnName="Information" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tourists">
+            <EntityTypeMapping TypeName="ToursModel.Tourists">
+              <MappingFragment StoreEntitySet="Tourists">
+                <ScalarProperty Name="TouristID" ColumnName="TouristID" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vouchers">
+            <EntityTypeMapping TypeName="ToursModel.Vouchers">
+              <MappingFragment StoreEntitySet="Vouchers">
+                <ScalarProperty Name="VoucherID" ColumnName="VoucherID" />
+                <ScalarProperty Name="TouristID" ColumnName="TouristID" />
+                <ScalarProperty Name="SeasonID" ColumnName="SeasonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
