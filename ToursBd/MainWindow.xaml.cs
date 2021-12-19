@@ -84,16 +84,55 @@ namespace ToursBd
                 WrongLP.Visibility = Visibility.Visible;
             }
         }
-
+        int i = 0;
         private void PasswordBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             WrongLP.Visibility = Visibility.Hidden;
+            while (i < PasswordBox.Text.Length)
+            {
+                i++;
+                HidePassword.Text += '*';
+            }
+            if (i > PasswordBox.Text.Length)
+            {
+                i--;
+                HidePassword.Text = HidePassword.Text.Substring(0, HidePassword.Text.Length - 1);
+            }
+
 
         }
 
         private void LoginBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             WrongLP.Visibility = Visibility.Hidden;
+        }
+
+        private void ShowPassword_Click(object sender, RoutedEventArgs e)
+        {
+            if (ShowPassword.IsChecked == true)
+            {
+                PasswordBox.Foreground = Brushes.White;
+                PasswordBox.Visibility = Visibility.Hidden;
+                if (HidePassword.Text.Length > PasswordBox.Text.Length)
+                {
+                    HidePassword.Text = HidePassword.Text.Substring(0, PasswordBox.Text.Length);
+                }
+                else if (HidePassword.Text.Length < PasswordBox.Text.Length)
+                {
+                    for (int i = HidePassword.Text.Length; i != PasswordBox.Text.Length; i++)
+                    {
+                        HidePassword.Text += '*';
+                    }
+                }
+
+            }
+            else
+            {
+                PasswordBox.Foreground = Brushes.Black;
+                PasswordBox.Visibility = Visibility.Visible;
+
+            }
+
         }
     }
     

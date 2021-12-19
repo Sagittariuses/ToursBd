@@ -15,57 +15,58 @@ using System.Windows.Shapes;
 namespace ToursBd
 {
     /// <summary>
-    /// Логика взаимодействия для UserAdd.xaml
+    /// Логика взаимодействия для SeasonAdd.xaml
     /// </summary>
-    public partial class UserAdd : Window
+    public partial class SeasonAdd : Window
     {
         ToursEntities db = Helper.GetContext();
-        public UserAdd()
+        public SeasonAdd()
         {
             InitializeComponent();
             double screenHeight = SystemParameters.FullPrimaryScreenHeight;
             double screenWidth = SystemParameters.FullPrimaryScreenWidth;
             this.Top = (screenHeight - this.Height) / 0x00000002;
             this.Left = (screenWidth - this.Width) / 0x00000002;
-            
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            try
+            bool open_close;
+            int tourid = Convert.ToInt32(TourID.Text);
+            if (Open_close.SelectedIndex == 0)
             {
-                string aa = db.Users.ToList().FirstOrDefault(x => x.Login == Login.Text && x.UserID > -1).Login;
-                if (Login.Text == db.Users.ToList().FirstOrDefault(x => x.Login == Login.Text && x.UserID > -1).Login)
-                {
-                    Add.Visibility = Visibility.Collapsed;
-                    MessageBox.Show("Такой логин уже занят");
-                }
+                 open_close = true;
             }
-            catch
+            else
             {
-                int MaxId = db.Users.Max(x => x.UserID) + 1;
+                open_close = false;
+            }
+            if (tourid > db.Tour.Max(x => x.TourID))
+            {
+                Add.Visibility = Visibility.Collapsed;
+                MessageBox.Show("Такого тура не существует");
+            }
+            else
+            {
+                int MaxId = db.Seasons.Max(x => x.SeasonID) + 1;
                 ToursEntities ConObj = new ToursEntities();
-                Users users = new Users
+                Seasons seasons = new Seasons
                 {
-                    UserID = MaxId,
-                    Name = Name.Text,
-                    Surname = Surname.Text,
-                    Password = Password.Text,
-                    Login = Login.Text,
-                    RoleID = Convert.ToInt32(UserRole.SelectedIndex + 1)
+                    SeasonID = MaxId,
+                    StartDate = Convert.ToDateTime(DateStart.Text),
+                    FinishDate = Convert.ToDateTime(DateFinish.Text),
+                    SeasonClosed = open_close,
+                    NumberOfSeats = Convert.ToInt32(Seats.Text)
                 };
-
-                ConObj.Users.Add(users);
+                ConObj.Seasons.Add(seasons);
                 ConObj.SaveChanges();
                 this.Close();
-
             }
         }
 
-        private void Login_TextChanged(object sender, TextChangedEventArgs e)
+        private void TourID_TextChanged(object sender, TextChangedEventArgs e)
         {
             Add.Visibility = Visibility.Visible;
-
         }
     }
 }

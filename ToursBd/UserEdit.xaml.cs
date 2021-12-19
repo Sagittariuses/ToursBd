@@ -46,11 +46,15 @@ namespace ToursBd
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            if (Login.Text == db.Users.ToList().Find(x => x.UserID != Helper.UserID && x.Login.StartsWith(Login.Text)).Login)
+            try
             {
-                Edit.Visibility = Visibility.Collapsed;
+                if (Login.Text == db.Users.ToList().Find(x => x.UserID != Helper.UserID && x.Login.StartsWith(Login.Text)).Login)
+                {
+                    Edit.Visibility = Visibility.Collapsed;
+                    MessageBox.Show("Логин уже занят");
+                }
             }
-            else
+            catch
             {
                 Users user = ConObj.Users.Where(x => x.UserID == Helper.UserID).FirstOrDefault();
                 user.Surname = Surname.Text;
@@ -60,8 +64,7 @@ namespace ToursBd
                 user.RoleID = UserRole.SelectedIndex + 1;
                 ConObj.SaveChanges();
                 this.Close();
-            }
-                
+            }   
         }
 
         private void Login_TextChanged(object sender, TextChangedEventArgs e)

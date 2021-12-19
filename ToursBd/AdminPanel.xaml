@@ -336,8 +336,8 @@
                             <TextBlock HorizontalAlignment="Left" Margin="10,6,0,0" TextWrapping="Wrap" TextAlignment="Center" FontFamily="Roboto" FontSize="16" Text="Поиск" Foreground="#FFF57E68" VerticalAlignment="Top" Width="94"/>
                             <TextBox x:Name="TourSeason"  FontSize="16" Foreground="#FFF57E68" Margin="10,30,102,105" Width="200" Height="25" TextChanged ="TourSeason_TextChanged" PreviewMouseDown="TourSeason_PreviewMouseDown" BorderBrush="#FFF57E68" Background="#FF303030"/>
                             <TextBox x:Name="Closed"  FontSize="16" Foreground="#FFF57E68" Margin="10,70,102,65" Width="200" Height="25"  TextChanged="Closed_TextChanged" PreviewMouseDown = "Closed_PreviewMouseDown" Background="#FF303030" BorderBrush="#FFF57E68"/>
-                            <TextBox x:Name="Date" FontSize="16" Foreground="#FFF57E68" Margin="10,110,102,25" Width="200" Height="25"  TextChanged="Date_TextChanged" PreviewMouseDown = "Date_PreviewMouseDown" Background="#FF303030" BorderBrush="#FFF57E68"/>
-                            <TextBlock x:Name="DatePlaceholder" HorizontalAlignment="Left" Margin="-17,111,0,0" TextWrapping="Wrap" TextAlignment="Center" FontFamily="Roboto" FontSize="16" Text="Дата" Foreground="LightGray" VerticalAlignment="Top" Width="96"/>
+                            <TextBox x:Name="Date"  FontSize="16" Foreground="#FFF57E68" Margin="10,110,102,25" Width="200" Height="25"  TextChanged="Date_TextChanged" PreviewMouseDown = "Date_PreviewMouseDown" Background="#FF303030" BorderBrush="#FFF57E68"/>
+                            <TextBlock x:Name="DatePlaceholder" HorizontalAlignment="Left" Margin="-17,111,0,0" TextWrapping="Wrap" TextAlignment="Center" FontFamily="Roboto" FontSize="16" Text="Дата (дд.мм.гг)" Foreground="LightGray" VerticalAlignment="Top" Width="177"/>
                             <TextBlock x:Name="ClosedPlaceholder" HorizontalAlignment="Left" Margin="-6,71,0,0" TextWrapping="Wrap" TextAlignment="Center" FontFamily="Roboto" FontSize="16" Text="Открыт/закрыт" Foreground="LightGray" VerticalAlignment="Top" Width="155"/>
                             <TextBlock x:Name="TourSeasonPlaceholder" HorizontalAlignment="Left" Margin="-3,31,0,0" TextWrapping="Wrap" TextAlignment="Center" FontFamily="Roboto" FontSize="16" Text="Тур" Foreground="LightGray" VerticalAlignment="Top" Width="58"/>
                             <Border CornerRadius="7" BorderBrush="#FFF57E68" BorderThickness="1" UseLayoutRounding="True" Margin="0, 0,87,11"/>
@@ -369,7 +369,7 @@
 
             <TabItem x:Name="Payment" Header="Оплаты" BorderBrush="#FFF57E68" Background="#FF303030" Margin="7,-1,-7,-1" FontFamily="Roboto" Width="102" >
                 <Grid Background="#FF303030" Margin="0,0,-1,-3">
-                    <ListView x:Name="PaymentLV" HorizontalAlignment="Left" Height="493" Margin="10,10,0,0" VerticalAlignment="Top" Width="594"  Background="#303030" BorderBrush="#FFF57E68" Foreground="White" >
+                    <ListView x:Name="PaymentLV" HorizontalAlignment="Left" Height="493" Margin="10,10,0,0" VerticalAlignment="Top" Width="387"  Background="#303030" BorderBrush="#FFF57E68" Foreground="White" >
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="ID сезона" DisplayMemberBinding="{Binding PaymentID}"/>
@@ -393,14 +393,14 @@
                             </Style>
                         </ListView.ItemContainerStyle>
                     </ListView>
-                    <StackPanel  HorizontalAlignment="Left" Height="149" Margin="609,10,0,0" VerticalAlignment="Top" Width="270">
+                    <StackPanel  HorizontalAlignment="Left" Height="149" Margin="402,10,0,0" VerticalAlignment="Top" Width="270">
                         <Grid Height="160" Margin="0,0,-42,0">
                             <TextBlock HorizontalAlignment="Left" Margin="10,6,0,0" TextWrapping="Wrap" TextAlignment="Center" FontFamily="Roboto" FontSize="16" Text="Поиск" Foreground="#FFF57E68" VerticalAlignment="Top" Width="94"/>
                             <TextBox x:Name="VouchPay"  FontSize="16" Foreground="#FFF57E68" Margin="10,30,102,105" Width="200" Height="25" TextChanged ="VouchPay_TextChanged" PreviewMouseDown="VouchPay_PreviewMouseDown" BorderBrush="#FFF57E68" Background="#FF303030"/>
                             <TextBox x:Name="DatePay"  FontSize="16" Foreground="#FFF57E68" Margin="10,70,102,65" Width="200" Height="25"  TextChanged="DatePay_TextChanged" PreviewMouseDown = "DatePay_PreviewMouseDown" Background="#FF303030" BorderBrush="#FFF57E68"/>
                             <TextBox x:Name="SumPay"  FontSize="16" Foreground="#FFF57E68" Margin="10,110,102,25" Width="200" Height="25"  TextChanged="SumPay_TextChanged" PreviewMouseDown = "SumPay_PreviewMouseDown" Background="#FF303030" BorderBrush="#FFF57E68"/>
                             <TextBlock x:Name="SumPayPlaceholder" HorizontalAlignment="Left" Margin="-17,111,0,0" TextWrapping="Wrap" TextAlignment="Center" FontFamily="Roboto" FontSize="16" Text="Сумма" Foreground="LightGray" VerticalAlignment="Top" Width="109"/>
-                            <TextBlock x:Name="DatePayPlaceholder" HorizontalAlignment="Left" Margin="-6,71,0,0" TextWrapping="Wrap" TextAlignment="Center" FontFamily="Roboto" FontSize="16" Text="Дата" Foreground="LightGray" VerticalAlignment="Top" Width="75"/>
+                            <TextBlock x:Name="DatePayPlaceholder" HorizontalAlignment="Left" Margin="-6,71,0,0" TextWrapping="Wrap" TextAlignment="Center" FontFamily="Roboto" FontSize="16" Text="Дата (дд.мм.гг)" Foreground="LightGray" VerticalAlignment="Top" Width="155"/>
                             <TextBlock x:Name="VouchPayPlaceholder" HorizontalAlignment="Left" Margin="-4,31,0,0" TextWrapping="Wrap" TextAlignment="Center" FontFamily="Roboto" FontSize="16" Text="Путёвка" Foreground="LightGray" VerticalAlignment="Top" Width="95"/>
                             <Border CornerRadius="7" BorderBrush="#FFF57E68" BorderThickness="1" UseLayoutRounding="True" Margin="0, 0,87,11"/>
                         </Grid>

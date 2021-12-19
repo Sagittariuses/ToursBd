@@ -8,14 +8,6 @@
         Title="Nova tour" Height="812" Width="590" ResizeMode="NoResize" Icon="Resource/ico.png" Background="#303030">
     <Grid>
         <Image x:Name="BgImage" HorizontalAlignment="Left" Height="790" VerticalAlignment="Top" Width="598" Source="back_ico.png" Margin="4,-3,-18,-4" RenderTransformOrigin="0.5,0.5">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-0.051"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Image.RenderTransform>
         </Image>
         <Button x:Name="EnterButton" Foreground="#303030" Content="Войти" HorizontalAlignment="Center" Margin="143,509,157,0" VerticalAlignment="Top" Width="284" Height="43" Background="#FFF57E68"  FontFamily="Roboto" FontSize="18"  BorderBrush="#FFA85648" Click="EnterButton_Click">
             <Button.Resources>
@@ -31,9 +23,16 @@
                 </Style>
             </TextBox.Resources>
         </TextBox>
-        <Label Content="Логин:" HorizontalAlignment="Left" Margin="143,217,0,0" VerticalAlignment="Top" FontFamily="Roboto" Foreground="#FFBBBBBB" FontSize="18" Height="32" Width="66"/>
-        <Label Content="Пароль:" HorizontalAlignment="Left" Margin="143,320,0,0" VerticalAlignment="Top" Foreground="#FFBBBBBB" FontSize="18" FontFamily="Roboto" Height="32" Width="77"/>
-        <CheckBox x:Name="ShowPassword" Content="Скрыть пароль" HorizontalAlignment="Left" Margin="324,402,0,0" VerticalAlignment="Top" Foreground="#FF979797" Background="#FFA4A4A4"  Height="15" Width="103" Grid.ColumnSpan="2" />
+        <Label Content="Логин:" HorizontalAlignment="Left" Margin="143,217,0,0" VerticalAlignment="Top" FontFamily="Roboto" Foreground="#FFF57E68" FontSize="18" Height="32" Width="66"/>
+        <Label Content="Пароль:" HorizontalAlignment="Left" Margin="143,320,0,0" VerticalAlignment="Top" Foreground="#FFF57E68" FontSize="18" FontFamily="Roboto" Height="32" Width="77"/>
+        <CheckBox x:Name="ShowPassword" Content="Скрыть пароль" HorizontalAlignment="Left" Margin="324,402,0,0" VerticalAlignment="Top" Foreground="#FFF57E68" Background="#FFA4A4A4"  Height="15" Width="103" Grid.ColumnSpan="2" Click="ShowPassword_Click"/>
+        <TextBox x:Name="HidePassword" HorizontalAlignment="Left" Height="40" Margin="143,357,0,0" Text="" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="284" FontSize="18" FontFamily="Roboto" MaxLength="16" IsUndoEnabled="False" TextChanged="PasswordBox_TextChanged">
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
         <TextBox x:Name="PasswordBox" HorizontalAlignment="Left" Height="40" Margin="143,357,0,0" Text="" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="284" FontSize="18" FontFamily="Roboto" MaxLength="16" IsUndoEnabled="False" Grid.ColumnSpan="2" TextChanged="PasswordBox_TextChanged">
             <TextBox.Resources>
                 <Style TargetType="{x:Type Border}">
@@ -58,5 +57,6 @@
             </Button.BorderBrush>
         </Button>
         <TextBlock x:Name="WrongLP" HorizontalAlignment="Left" Margin="206,672,0,0" TextWrapping="Wrap" Text="Неверный логин или пароль!" VerticalAlignment="Top" Width="150" Foreground="#FFF57E68" FontFamily="Roboto" Visibility="Hidden"/>
+
     </Grid>
 </Window>

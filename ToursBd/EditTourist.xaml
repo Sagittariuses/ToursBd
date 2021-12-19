@@ -7,14 +7,14 @@
         mc:Ignorable="d"
        Title="EditTourist" Height="515" Width="396" Background="#303030" Icon="Resource/ico.png" >
     <Grid Margin="0,0,552,112">
-        <TextBlock  HorizontalAlignment="Left" Margin="23,95,-148,0" TextWrapping="Wrap" FontSize="16" FontFamily="Roboto" Foreground="#FFBBBBBB" Text="Фамилия" VerticalAlignment="Top" Width="125"/>
-        <TextBlock HorizontalAlignment="Left" Margin="23,132,-148,0" TextWrapping="Wrap" FontSize="16" FontFamily="Roboto" Foreground="#FFBBBBBB" Text="Имя" VerticalAlignment="Top" Width="125"/>
-        <TextBlock HorizontalAlignment="Left" Margin="23,168,-148,0" TextWrapping="Wrap" FontSize="16" Foreground="#FFBBBBBB"  Text="Отчество" VerticalAlignment="Top" Width="125" FontFamily="Arial Unicode MS"/>
-        <TextBlock HorizontalAlignment="Left" Margin="23,206,-148,0" TextWrapping="Wrap" FontSize="16" Foreground="#FFBBBBBB" FontFamily="Roboto" Text="Серия паспорта" VerticalAlignment="Top" Width="125"/>
-        <TextBlock HorizontalAlignment="Left" Margin="23,239,-148,0" TextWrapping="Wrap" FontSize="16" Foreground="#FFBBBBBB" FontFamily="Roboto" Text="Город" VerticalAlignment="Top" Width="125"/>
-        <TextBlock HorizontalAlignment="Left" Margin="23,276,-148,0" TextWrapping="Wrap" FontSize="16" Foreground="#FFBBBBBB" FontFamily="Roboto" Text="Страна" VerticalAlignment="Top" Width="125"/>
-        <TextBlock HorizontalAlignment="Left" Margin="23,313,-148,-9" TextWrapping="Wrap" FontSize="16" Foreground="#FFBBBBBB" FontFamily="Roboto" Text="Телефон" VerticalAlignment="Top" Width="125"/>
-        <TextBlock HorizontalAlignment="Left" Margin="23,347,-148,-43" TextWrapping="Wrap" FontSize="16" Foreground="#FFBBBBBB" FontFamily="Roboto" Text="Индекс" VerticalAlignment="Top" Width="125"/>
+        <TextBlock  HorizontalAlignment="Left" Margin="23,95,-148,0" TextWrapping="Wrap" FontSize="16" FontFamily="Roboto" Foreground="#FFF57E68" Text="Фамилия" VerticalAlignment="Top" Width="125"/>
+        <TextBlock HorizontalAlignment="Left" Margin="23,132,-148,0" TextWrapping="Wrap" FontSize="16" FontFamily="Roboto" Foreground="#FFF57E68" Text="Имя" VerticalAlignment="Top" Width="125"/>
+        <TextBlock HorizontalAlignment="Left" Margin="23,168,-148,0" TextWrapping="Wrap" FontSize="16" Foreground="#FFF57E68"  Text="Отчество" VerticalAlignment="Top" Width="125" FontFamily="Arial Unicode MS"/>
+        <TextBlock HorizontalAlignment="Left" Margin="23,206,-148,0" TextWrapping="Wrap" FontSize="16" Foreground="#FFF57E68" FontFamily="Roboto" Text="Серия паспорта" VerticalAlignment="Top" Width="125"/>
+        <TextBlock HorizontalAlignment="Left" Margin="23,239,-148,0" TextWrapping="Wrap" FontSize="16" Foreground="#FFF57E68" FontFamily="Roboto" Text="Город" VerticalAlignment="Top" Width="125"/>
+        <TextBlock HorizontalAlignment="Left" Margin="23,276,-148,0" TextWrapping="Wrap" FontSize="16" Foreground="#FFF57E68" FontFamily="Roboto" Text="Страна" VerticalAlignment="Top" Width="125"/>
+        <TextBlock HorizontalAlignment="Left" Margin="23,313,-148,-9" TextWrapping="Wrap" FontSize="16" Foreground="#FFF57E68" FontFamily="Roboto" Text="Телефон" VerticalAlignment="Top" Width="125"/>
+        <TextBlock HorizontalAlignment="Left" Margin="23,347,-148,-43" TextWrapping="Wrap" FontSize="16" Foreground="#FFF57E68" FontFamily="Roboto" Text="Индекс" VerticalAlignment="Top" Width="125"/>
         <TextBlock x:Name="TouristNumber"  HorizontalAlignment="Left" Margin="91,30,-284,0" TextWrapping="Wrap"  FontFamily="Roboto" FontSize="24" Text="Турист №" Foreground="#FFF57E68" VerticalAlignment="Top" Width="193">
             <TextBlock.TextAlignment>center</TextBlock.TextAlignment>
         </TextBlock>

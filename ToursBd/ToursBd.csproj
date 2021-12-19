@@ -76,6 +76,12 @@
     <Compile Include="Roles.cs">
       <DependentUpon>ToursModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SeasonAdd.xaml.cs">
+      <DependentUpon>SeasonAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SeasonEdit.xaml.cs">
+      <DependentUpon>SeasonEdit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Seasons.cs">
       <DependentUpon>ToursModel.tt</DependentUpon>
     </Compile>
@@ -84,6 +90,12 @@
     </Compile>
     <Compile Include="Tour.cs">
       <DependentUpon>ToursModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TourAdd.xaml.cs">
+      <DependentUpon>TourAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TourEdit.xaml.cs">
+      <DependentUpon>TourEdit.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tourists.cs">
       <DependentUpon>ToursModel.tt</DependentUpon>
@@ -156,6 +168,22 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Registration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SeasonAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SeasonEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TourAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TourEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

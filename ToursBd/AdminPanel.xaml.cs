@@ -166,8 +166,15 @@ namespace ToursBd
         {
             RefreshTourist.Visibility = Visibility.Visible;
             ClientLV.ItemsSource = db.Tourists.ToList();
-            dynamic selectedItem = ClientLV.SelectedItem;
-            Helper.TouristID = selectedItem.TouristID;
+            try
+            {
+                dynamic selectedItem = ClientLV.SelectedItem;
+                Helper.TouristID = selectedItem.TouristID;
+            }
+            catch
+            {
+
+            }
             ClientInfoLV.ItemsSource = db.InfoAboutTourists.ToList().FindAll(x => x.ID_tourist == Helper.TouristID);
         }
 
@@ -389,8 +396,15 @@ namespace ToursBd
         // --------------------------------------------------
         private void UsersLV_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            dynamic selectedItem = UsersLV.SelectedItem;
-            Helper.UserID = selectedItem.UserID;
+            try
+            {
+                dynamic selectedItem = UsersLV.SelectedItem;
+                Helper.UserID = selectedItem.UserID;
+            }
+            catch
+            {
+
+            }
         }
 
         // CRUD
@@ -539,24 +553,39 @@ namespace ToursBd
         // --------------------------------------------------
         private void ToursLV_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            dynamic selectedItem = ToursLV.SelectedItem;
-            Helper.TourID = selectedItem.TourID;
+            try
+            {
+                dynamic selectedItem = ToursLV.SelectedItem;
+                Helper.TourID = selectedItem.TourID;
+            }
+            catch
+            {
+
+            }
         }
 
         // CRUD
         private void EditTour_Click(object sender, RoutedEventArgs e)
         {
-
+            TourEdit tourEdit = new TourEdit();
+            tourEdit.ShowDialog();
+            ToursLV.ItemsSource = db.Tour.ToList();
         }
 
         private void AddTour_Click(object sender, RoutedEventArgs e)
         {
-
+            TourAdd tourAdd = new TourAdd();
+            tourAdd.ShowDialog();
+            ToursLV.ItemsSource = db.Tour.ToList();
         }
 
         private void DeleteTour_Click(object sender, RoutedEventArgs e)
         {
-
+            Tour tour = new Tour();
+            tour = ConObj.Tour.Where(x => x.TourID == Helper.TourID).FirstOrDefault();
+            ConObj.Tour.Remove(tour);
+            ConObj.SaveChanges();
+            ToursLV.ItemsSource = db.Users.ToList();
         }
 
 
@@ -619,24 +648,39 @@ namespace ToursBd
         // --------------------------------------------------
         private void SeasonsLV_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            dynamic selectedItem = SeasonsLV.SelectedItem;
-            Helper.SeasonID = selectedItem.SeasonID;
+            try
+            {
+                dynamic selectedItem = SeasonsLV.SelectedItem;
+                Helper.SeasonID = selectedItem.SeasonID;
+            }
+            catch
+            {
+
+            }
         }
 
         // CRUD
         private void AddSeason_Click(object sender, RoutedEventArgs e)
         {
-
+            SeasonAdd seasonAdd = new SeasonAdd();
+            seasonAdd.ShowDialog();
+            SeasonsLV.ItemsSource = db.Seasons.ToList();
         }
         
         private void EditSeason_Click(object sender, RoutedEventArgs e)
         {
-
+            SeasonEdit seasonEdit= new SeasonEdit();
+            seasonEdit.ShowDialog();
+            SeasonsLV.ItemsSource = db.Seasons.ToList();
         }
 
         private void DeleteSeason_Click(object sender, RoutedEventArgs e)
         {
-
+            Seasons seasons = new Seasons();
+            seasons = ConObj.Seasons.Where(x => x.SeasonID == Helper.SeasonID).FirstOrDefault();
+            ConObj.Seasons.Remove(seasons);
+            ConObj.SaveChanges();
+            SeasonsLV.ItemsSource = db.Users.ToList();
         }
        
         // Фильтры
@@ -789,7 +833,5 @@ namespace ToursBd
             this.Close();
             mainWindow.Show();
         }
-
-        
     }
 }
