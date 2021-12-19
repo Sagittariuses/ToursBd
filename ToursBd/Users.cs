@@ -12,13 +12,13 @@ namespace ToursBd
     using System;
     using System.Collections.Generic;
     
-    public partial class Tourists
+    public partial class Users
     {
-        public int TouristID { get; set; }
+        public int UserID { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
         public string Surname { get; set; }
         public string Name { get; set; }
-        public string Patronymic { get; set; }
-    
-        public virtual InfoAboutTourists InfoAboutTourists { get; set; }
+        public int RoleID { get; set; }
     }
 }

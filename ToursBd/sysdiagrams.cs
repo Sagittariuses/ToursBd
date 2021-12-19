@@ -12,13 +12,12 @@ namespace ToursBd
     using System;
     using System.Collections.Generic;
     
-    public partial class Tourists
+    public partial class sysdiagrams
     {
-        public int TouristID { get; set; }
-        public string Surname { get; set; }
-        public string Name { get; set; }
-        public string Patronymic { get; set; }
-    
-        public virtual InfoAboutTourists InfoAboutTourists { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

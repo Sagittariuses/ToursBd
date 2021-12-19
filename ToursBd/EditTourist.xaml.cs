@@ -23,13 +23,17 @@ namespace ToursBd
         public EditTourist()
         {
             InitializeComponent();
-            TouristNumber.Text = TouristNumber.Text + Helper.RemID;
-            Tourists tourist = ConObj.Tourists.Where(x => x.TouristID == Helper.RemID).FirstOrDefault();
+            double screenHeight = SystemParameters.FullPrimaryScreenHeight;
+            double screenWidth = SystemParameters.FullPrimaryScreenWidth;
+            this.Top = (screenHeight - this.Height) / 0x00000002;
+            this.Left = (screenWidth - this.Width) / 0x00000002;
+            TouristNumber.Text = TouristNumber.Text + Helper.TouristID;
+            Tourists tourist = ConObj.Tourists.Where(x => x.TouristID == Helper.TouristID).FirstOrDefault();
             Surname.Text = tourist.Surname;
             Name.Text = tourist.Name;
             Patr.Text = tourist.Patronymic;
 
-            InfoAboutTourists touristinfo = ConObj.InfoAboutTourists.Where(x => x.ID_tourist == Helper.RemID).FirstOrDefault();
+            InfoAboutTourists touristinfo = ConObj.InfoAboutTourists.Where(x => x.ID_tourist == Helper.TouristID).FirstOrDefault();
             PassSer.Text = touristinfo.PassportSeries.ToString();
             City.Text = touristinfo.City;
             Country.Text = touristinfo.Country;
@@ -39,12 +43,12 @@ namespace ToursBd
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            Tourists tourist = ConObj.Tourists.Where(x => x.TouristID == Helper.RemID).FirstOrDefault();
+            Tourists tourist = ConObj.Tourists.Where(x => x.TouristID == Helper.TouristID).FirstOrDefault();
             tourist.Surname = Surname.Text;
             tourist.Name = Name.Text;
             tourist.Patronymic= Patr.Text;
 
-            InfoAboutTourists touristinfo = ConObj.InfoAboutTourists.Where(x => x.ID_tourist == Helper.RemID).FirstOrDefault();
+            InfoAboutTourists touristinfo = ConObj.InfoAboutTourists.Where(x => x.ID_tourist == Helper.TouristID).FirstOrDefault();
             touristinfo.PassportSeries = Convert.ToInt32(PassSer.Text);
             touristinfo.City = City.Text;
             touristinfo.Country = Country.Text;

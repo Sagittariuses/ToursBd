@@ -23,6 +23,10 @@ namespace ToursBd
         public AddTourist()
         {
             InitializeComponent();
+            double screenHeight = SystemParameters.FullPrimaryScreenHeight;
+            double screenWidth = SystemParameters.FullPrimaryScreenWidth;
+            this.Top = (screenHeight - this.Height) / 0x00000002;
+            this.Left = (screenWidth - this.Width) / 0x00000002;
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)

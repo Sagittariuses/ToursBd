@@ -8,7 +8,10 @@ namespace ToursBd
 {
     class Helper
     {
-        public  static int RemID;
+        public static int UserID;
+        public static int TouristID;
+        public static int TourID;
+        public static int SeasonID;
         private static ToursEntities ConObj;
         public static ToursEntities GetContext()
         {

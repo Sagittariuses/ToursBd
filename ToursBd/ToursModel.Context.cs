@@ -27,9 +27,12 @@ namespace ToursBd
     
         public virtual DbSet<InfoAboutTourists> InfoAboutTourists { get; set; }
         public virtual DbSet<Payment> Payment { get; set; }
+        public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Seasons> Seasons { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tour> Tour { get; set; }
         public virtual DbSet<Tourists> Tourists { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Vouchers> Vouchers { get; set; }
     }
 }

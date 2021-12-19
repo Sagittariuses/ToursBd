@@ -25,6 +25,13 @@
           <Property Name="Date" Type="datetime" />
           <Property Name="Sum" Type="int" />
         </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Seasons">
           <Key>
             <PropertyRef Name="SeasonID" />
@@ -36,6 +43,16 @@
           <Property Name="SeasonClosed" Type="bit" />
           <Property Name="NumberOfSeats" Type="int" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="Tour">
           <Key>
             <PropertyRef Name="TourID" />
@@ -44,15 +61,27 @@
           <Property Name="Title" Type="nvarchar" MaxLength="50" />
           <Property Name="Price" Type="nvarchar" MaxLength="50" />
           <Property Name="Information" Type="nvarchar(max)" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Tourists">
           <Key>
             <PropertyRef Name="TouristID" />
           </Key>
           <Property Name="TouristID" Type="int" Nullable="false" />
-          <Property Name="Surname" Type="nchar" MaxLength="50" />
-          <Property Name="Name" Type="nchar" MaxLength="50" />
-          <Property Name="Patronymic" Type="nchar" MaxLength="50" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Vouchers">
           <Key>
@@ -125,9 +154,12 @@
         <EntityContainer Name="Хранилище ToursModelContainer">
           <EntitySet Name="InfoAboutTourists" EntityType="Self.InfoAboutTourists" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Seasons" EntityType="Self.Seasons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tour" EntityType="Self.Tour" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tourists" EntityType="Self.Tourists" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vouchers" EntityType="Self.Vouchers" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Information about tourists_Tourists" Association="Self.FK_Information about tourists_Tourists">
             <End Role="Tourists" EntitySet="Tourists" />
@@ -178,6 +210,13 @@
           <Property Name="Sum" Type="Int32" />
           <NavigationProperty Name="Vouchers" Relationship="Self.FK_Payment_Vouchers" FromRole="Payment" ToRole="Vouchers" />
         </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
         <EntityType Name="Seasons">
           <Key>
             <PropertyRef Name="SeasonID" />
@@ -191,6 +230,16 @@
           <NavigationProperty Name="Tour" Relationship="Self.FK_Seasons_Tour" FromRole="Seasons" ToRole="Tour" />
           <NavigationProperty Name="Vouchers" Relationship="Self.FK_Vouchers_Seasons" FromRole="Seasons" ToRole="Vouchers" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="Tour">
           <Key>
             <PropertyRef Name="TourID" />
@@ -199,6 +248,7 @@
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Information" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Seasons" Relationship="Self.FK_Seasons_Tour" FromRole="Tour" ToRole="Seasons" />
         </EntityType>
         <EntityType Name="Tourists">
@@ -206,10 +256,21 @@
             <PropertyRef Name="TouristID" />
           </Key>
           <Property Name="TouristID" Type="Int32" Nullable="false" />
-          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="InfoAboutTourists" Relationship="Self.FK_Information_about_tourists_Tourists" FromRole="Tourists" ToRole="InfoAboutTourists" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Vouchers">
           <Key>
@@ -285,9 +346,12 @@
         <EntityContainer Name="ToursEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="InfoAboutTourists" EntityType="Self.InfoAboutTourists" />
           <EntitySet Name="Payment" EntityType="Self.Payment" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="Seasons" EntityType="Self.Seasons" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Tour" EntityType="Self.Tour" />
           <EntitySet Name="Tourists" EntityType="Self.Tourists" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
           <EntitySet Name="Vouchers" EntityType="Self.Vouchers" />
           <AssociationSet Name="FK_Information_about_tourists_Tourists" Association="Self.FK_Information_about_tourists_Tourists">
             <End Role="Tourists" EntitySet="Tourists" />
@@ -338,6 +402,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="ToursModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Seasons">
             <EntityTypeMapping TypeName="ToursModel.Seasons">
               <MappingFragment StoreEntitySet="Seasons">
@@ -350,6 +422,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ToursModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Tour">
             <EntityTypeMapping TypeName="ToursModel.Tour">
               <MappingFragment StoreEntitySet="Tour">
@@ -357,6 +440,7 @@
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Information" ColumnName="Information" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -367,6 +451,18 @@
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ToursModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

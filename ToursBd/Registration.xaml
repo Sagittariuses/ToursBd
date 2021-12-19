@@ -1,0 +1,72 @@
+﻿<Window x:Class="ToursBd.Windows.Registration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ToursBd"
+        mc:Ignorable="d"
+        Title="Регистрация" Height="812" Width="590" ResizeMode="NoResize"  Background="#303030" Icon="Resource/ico.png">
+    <Grid>
+        <Image x:Name="BgImage" HorizontalAlignment="Left" Height="790" VerticalAlignment="Top" Width="598" Source="back_ico.png" Margin="1,3,-15,-10" RenderTransformOrigin="0.5,0.5">
+        </Image>
+        <TextBox x:Name="LoginBox" HorizontalAlignment="Left" Height="40" Margin="143,392,0,0" Text="" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="284" FontSize="18" FontFamily="Roboto" MaxLength="32" IsUndoEnabled="False">
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+        <Label Content="Логин:" HorizontalAlignment="Left" Margin="143,355,0,0" VerticalAlignment="Top" FontFamily="Roboto" Foreground="#FFBBBBBB" FontSize="18" Height="32" Width="66"/>
+        <Label Content="Пароль:" HorizontalAlignment="Left" Margin="143,437,0,0" VerticalAlignment="Top" Foreground="#FFBBBBBB" FontSize="18" FontFamily="Roboto" Height="32" Width="78"/>
+        <TextBox x:Name="PasswordBox" HorizontalAlignment="Left" Height="40" Margin="143,474,0,0" Text="" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="284" FontSize="18" FontFamily="Roboto" MaxLength="16" IsUndoEnabled="False">
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+        <Label Content="Повторите пароль:" HorizontalAlignment="Left" Margin="143,519,0,0" VerticalAlignment="Top" Foreground="#FFBBBBBB" FontSize="18" FontFamily="Roboto" Height="32" Width="172"/>
+        <TextBox x:Name="RePasswordBox" HorizontalAlignment="Left" Height="40" Margin="143,556,0,0" Text="" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="284" FontSize="18" FontFamily="Roboto" MaxLength="16" IsUndoEnabled="False">
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+        <Button x:Name="RegistrationButton" Content="Зарегистрироваться" HorizontalAlignment="Center" Margin="143,622,157,0" VerticalAlignment="Top" Width="284" Height="43" Background="#FFF57E68" Foreground="#303030" FontFamily="Roboto" FontSize="18"  BorderBrush="#FFA85648" Click="RegistrationButton_Click">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button x:Name="EnterInButton" Content="Назад" HorizontalAlignment="Left" Margin="227,687,0,0" VerticalAlignment="Top" Width="116" Foreground="White" Height="22" Click="EnterInButton_Click">
+            <Button.Background>
+                <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
+            </Button.Background>
+            <Button.BorderBrush>
+                <SolidColorBrush Color="#FF707070" Opacity="0"/>
+            </Button.BorderBrush>
+        </Button>
+        <TextBox x:Name="LastnameBox" HorizontalAlignment="Left" Height="40" Margin="143,276,0,0" Text="" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="284" FontSize="18" FontFamily="Roboto" MaxLength="32" IsUndoEnabled="False">
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+        <Label Content="Фамилия:" HorizontalAlignment="Left" Margin="143,240,0,0" VerticalAlignment="Top" FontFamily="Roboto" Foreground="#FFBBBBBB" FontSize="18" Height="32" Width="94"/>
+        <TextBox x:Name="NameBox" HorizontalAlignment="Left" Height="40" Margin="143,194,0,0" Text="" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="284" FontSize="18" FontFamily="Roboto" MaxLength="32" IsUndoEnabled="False">
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+        <Label Content="Имя:" HorizontalAlignment="Left" Margin="143,158,0,0" VerticalAlignment="Top" FontFamily="Roboto" Foreground="#FFBBBBBB" FontSize="18" Height="32" Width="66"/>
+        <Rectangle Fill="#FFF57E68" HorizontalAlignment="Left" Height="1" Margin="157,340,0,0" Stroke="#FFF57E68" VerticalAlignment="Top" Width="256" />
+        <TextBlock x:Name="WrongLP" HorizontalAlignment="Left" Margin="172,714,0,0" TextWrapping="Wrap" Text="Все поля обязательны для заполнения!" VerticalAlignment="Top" Width="230" Foreground="#FFF57E68" FontFamily="Roboto" Visibility="Hidden"/>
+
+    </Grid>
+</Window>
+

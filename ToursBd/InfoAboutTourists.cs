@@ -26,8 +26,7 @@ namespace ToursBd
         public string Country { get; set; }
         public string Phone { get; set; }
         public Nullable<int> Index { get; set; }
-
-
+    
         public virtual Tourists Tourists { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vouchers> Vouchers { get; set; }

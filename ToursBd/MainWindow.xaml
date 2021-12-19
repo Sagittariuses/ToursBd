@@ -5,46 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToursBd"
         mc:Ignorable="d"
-        Loaded="Window_Loaded"
-        Title="Туристы" Height="604.5" Width="954.5" ResizeMode="NoResize">
-    <Grid >
-
-        <ListView x:Name="ClientLV" HorizontalAlignment="Left" Height="183" Margin="10,10,0,0" VerticalAlignment="Top" Width="342" SelectionChanged="ClientLV_SelectionChanged">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path = TouristID}" Width="25"></GridViewColumn>
-                    <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding Path = Surname}" Width="100"></GridViewColumn>
-                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Path = Name}" Width="100"></GridViewColumn>
-                    <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Path = Patronymic}" Width="100"></GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <ListView x:Name="ClientInfoLV" HorizontalAlignment="Left" Height="185" Margin="10,218,0,0" VerticalAlignment="Top" Width="476" SelectionChanged ="ClientInfoLV_SelectionChanged">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path = ID_tourist}" Width="25"></GridViewColumn>
-                    <GridViewColumn Header="Серия паспорта" DisplayMemberBinding="{Binding Path = PassportSeries}"></GridViewColumn>
-                    <GridViewColumn Header="Город" DisplayMemberBinding="{Binding Path = City}"  Width="100" ></GridViewColumn>
-                    <GridViewColumn Header="Страна" DisplayMemberBinding="{Binding Path = Country}"  Width="100" ></GridViewColumn>
-                    <GridViewColumn Header="Номер телефона" DisplayMemberBinding="{Binding Path = Phone}"></GridViewColumn>
-                    <GridViewColumn Header="Индекс" DisplayMemberBinding="{Binding Path = Index}"></GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
-
-
-        <GroupBox Header="Фильтрация и поиск" HorizontalAlignment="Left" Height="121" Margin="357,12,0,0" VerticalAlignment="Top" Width="221">
-            <Grid>
-                <TextBox x:Name="PassSeries" Margin="5,69,4,4" Width="200" Height="25" TextChanged ="PassSeries_TextChanged"/>
-                <TextBox x:Name="TouristFilt" Margin="5,9,4,64" Width="200" Height="25" TextChanged="TouristFilt_TextChanged"/>
-                <TextBox x:Name="Phone" Margin="5,39,4,34" Width="200" Height="25" TextChanged="Phone_TextChanged" />
-            </Grid>
-        </GroupBox>
-
-
-        <Button x:Name="Add" Content="Добавить" HorizontalAlignment="Left" Margin="491,306,0,0" FontSize="16" VerticalAlignment="Top" Width="171" Click="Add_Click"   Height="29"/>
-        <Button x:Name="Edit" Content="Редактировать" HorizontalAlignment="Left" Margin="491,340,0,0" FontSize="16" VerticalAlignment="Top" Width="171" Click="Edit_Click"   Height="29"/>
-        <Button x:Name="Delete" Content="Удалить" HorizontalAlignment="Left" Margin="491,374,0,0" FontSize="16" VerticalAlignment="Top" Width="171" Click="Delete_Click"   Height="29"/>
-        <Button x:Name="Refresh" Content="Обновить всё" HorizontalAlignment="Left" Margin="368,164,0,0" FontSize="16" VerticalAlignment="Top" Width="171" Click="Refresh_Click"   Height="29" Visibility="Hidden"/>
+        Title="Nova tour" Height="812" Width="590" ResizeMode="NoResize" Icon="Resource/ico.png" Background="#303030">
+    <Grid>
+        <Image x:Name="BgImage" HorizontalAlignment="Left" Height="790" VerticalAlignment="Top" Width="598" Source="back_ico.png" Margin="4,-3,-18,-4" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.051"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Button x:Name="EnterButton" Foreground="#303030" Content="Войти" HorizontalAlignment="Center" Margin="143,509,157,0" VerticalAlignment="Top" Width="284" Height="43" Background="#FFF57E68"  FontFamily="Roboto" FontSize="18"  BorderBrush="#FFA85648" Click="EnterButton_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <TextBox x:Name="LoginBox" HorizontalAlignment="Left" Height="40" Margin="143,254,0,0" Text="" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="284" FontSize="18" FontFamily="Roboto" MaxLength="32" IsUndoEnabled="False" Grid.ColumnSpan="2" TextChanged="LoginBox_TextChanged">
+            <TextBox.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+        <Label Content="Логин:" HorizontalAlignment="Left" Margin="143,217,0,0" VerticalAlignment="Top" FontFamily="Roboto" Foreground="#FFBBBBBB" FontSize="18" Height="32" Width="66"/>
+        <Label Content="Пароль:" HorizontalAlignment="Left" Margin="143,320,0,0" VerticalAlignment="Top" Foreground="#FFBBBBBB" FontSize="18" FontFamily="Roboto" Height="32" Width="77"/>
+        <CheckBox x:Name="ShowPassword" Content="Скрыть пароль" HorizontalAlignment="Left" Margin="324,402,0,0" VerticalAlignment="Top" Foreground="#FF979797" Background="#FFA4A4A4"  Height="15" Width="103" Grid.ColumnSpan="2" />
+        <TextBox x:Name="PasswordBox" HorizontalAlignment="Left" Height="40" Margin="143,357,0,0" Text="" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="284" FontSize="18" FontFamily="Roboto" MaxLength="16" IsUndoEnabled="False" Grid.ColumnSpan="2" TextChanged="PasswordBox_TextChanged">
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+        <Button x:Name="RegButton" Content="Зарегистрироваться" HorizontalAlignment="Left" Margin="226,573,0,0" VerticalAlignment="Top" Width="115" Foreground="White" Height="22" Click="RegButton_Click">
+            <Button.Background>
+                <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
+            </Button.Background>
+            <Button.BorderBrush>
+                <SolidColorBrush Color="#FF707070" Opacity="0"/>
+            </Button.BorderBrush>
+        </Button>
+        <Button x:Name="WithNoRegBtn"  Content="Продолжить без регистрации" HorizontalAlignment="Left" Margin="201,728,0,0" VerticalAlignment="Top" Width="168" Foreground="#FFF57E68" Height="22" Click="WithNoRegBtn_Click">
+            <Button.Background>
+                <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
+            </Button.Background>
+            <Button.BorderBrush>
+                <SolidColorBrush Color="#FF707070" Opacity="0"/>
+            </Button.BorderBrush>
+        </Button>
+        <TextBlock x:Name="WrongLP" HorizontalAlignment="Left" Margin="206,672,0,0" TextWrapping="Wrap" Text="Неверный логин или пароль!" VerticalAlignment="Top" Width="150" Foreground="#FFF57E68" FontFamily="Roboto" Visibility="Hidden"/>
     </Grid>
 </Window>
